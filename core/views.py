@@ -1,9 +1,10 @@
 from django.http import JsonResponse
-from django.shortcuts import render
 from core.models import Testing
+from core.serializers import TestingSerializer
 
 def testing_view(request):
-    # For now, return a simple static JSON response
-    return JsonResponse({'message': 'Hello, world!'})
+    testing_records = Testing.objects.all()
+    serializer = TestingSerializer(testing_records, many=True)
+    return JsonResponse(serializer.data, safe=False)
 def health_check(request):
     return JsonResponse({'status': 'ok'})
