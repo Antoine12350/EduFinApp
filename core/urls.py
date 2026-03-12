@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import CategoryListView, CategoryDetailView
 from core.views import (
     testing_view,
     TransactionListView,
@@ -13,4 +14,8 @@ urlpatterns = [
     path('transactions/<int:id>/', TransactionDetailView.as_view(), name='transaction-detail'),
 
     path('budgets/', BudgetListView.as_view(), name='budget-list'),
+    path('categories/', CategoryListView.as_view(), name='category-list'),
+    path('categories/<int:pk>/', CategoryDetailView.as_view(), name='category-detail'),
 ]
+    
+
